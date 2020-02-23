@@ -1,0 +1,27 @@
+<div class="topbar">
+  <div class="navigation">
+    <div class="places">
+      <a class="nav-btn" routerLink="/home" routerLinkActive="active">Home</a>
+      <a class="nav-btn" routerLink="/credits" routerLinkActive="active">Credits</a>
+    </div>
+    <div class="user-info">
+      <ng-template #popTitle>
+        <a *ngIf="!user">Hello, <b>Guest</b>!</a>
+        <a *ngIf="user">Welcome back, <b>{{ user }}</b>!</a>
+      </ng-template>
+      <ng-template #popContent>
+        <div class="user-options">
+          <a *ngIf="!user" class="user-btn" routerLink="/login" routerLinkActive="active">Login</a>
+          <a *ngIf="user" class="user-btn" routerLink="/home" routerLinkActive="active"(click)="logout($event)">Logout</a>
+          <a *ngIf="user" class="user-btn" [routerLink]="['/profile', id]"
+             routerLinkActive="active">My profile</a>
+          <a *ngIf="user" class="user-btn" [routerLink]="['/editprofile', id]"
+             routerLinkActive="active">Edit profile</a>
+        </div>
+      </ng-template>
+      <div class="user-avatar" [ngbPopover]="popContent" [popoverTitle]="popTitle" placement="bottom-right"
+      [style.background]="'url(' + userAvatar + ')'">
+      </div>
+    </div>
+  </div>
+</div>

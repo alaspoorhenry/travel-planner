@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ulysses</title>
+  <base href="/login">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="login-wrapper">
+      <!-- authorization  check -->
+      <div *ngIf="authorized" class="box-header"> You are authorized </div> 
+      <div *ngIf="!authorized" class="box-header"> Login </div>
+      <form id="login-form" (submit)="loginUser($event)">
+        <input id="username" type="text" placeholder="Enter your name here" required/>
+        <input id="password" type="password" placeholder="Enter your password here" required/>
+        <button type="submit">Submit</button>
+      </form>
+      <a *ngIf="!authorized" routerLink="/register"><button class="btn" > Register </button></a>
+  </div>
+</div>
+</body>
+</html>

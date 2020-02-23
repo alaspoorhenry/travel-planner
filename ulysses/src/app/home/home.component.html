@@ -1,0 +1,19 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <div class="itineraries-container">
+    <!--ensure there's always 8 elements in displayItineraries -->
+    <div *ngIf="currentPage > 0" class="left-arrow nav-btn" (click)="pageLeft()"><img src="/assets/images/left-arrow.svg"></div>
+    <div *ngIf="displayItineraries.length === 8" class="right-arrow nav-btn" (click)="pageRight()"><img src="/assets/images/right-arrow.svg"></div>
+    <div class="itineraries-display">
+      <div *ngFor="let itinerary of displayItineraries;" (click)="viewItinerary(itinerary)" class="itinerary-card"
+      [style.background]="'url(' + itinerary.photoUrl + ')'">
+        <div class="itinerary-info" *ngIf="!!itinerary">
+          <div class="itinerary-name">{{ itinerary.name }}</div>
+          <div class="itinerary-user">{{ itinerary.username }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

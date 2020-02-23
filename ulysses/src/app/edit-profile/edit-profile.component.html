@@ -1,0 +1,41 @@
+<div class="edit-profile-wrapper">
+  <form class="text-center border border-light p-5" (submit)="updateUser($event)">
+    <p class="h4 mb-4">{{username}}</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <!-- First name -->
+        <label>First Name</label>
+        <input type="text" id="defaultFormFirstName" class="form-control"
+               placeholder="First name" [defaultValue]="firstName" >
+      </div>
+      <div class="col">
+        <!-- Last name -->
+        <label>Last Name</label>
+        <input type="text" id="defaultFormLastName" class="form-control"
+               placeholder="Last name" [defaultValue]="lastName" >
+      </div>
+    </div>
+    <label>Email address</label>
+    <input type="email" id="defaultFormEmail" class="form-control mb-4"
+           placeholder="E-mail" [defaultValue]="email" >
+    <label>Phone number</label>
+    <input type="text" id="defaultPhoneNumber" class="form-control mb-4"
+           placeholder="Phone number"
+           aria-describedby="defaultFormPhoneHelpBlock" [defaultValue]="phoneNumber" >
+    <label>My info</label>
+    <input type="text" id="defaultInfo" class="form-control mb-4"
+           placeholder="My info"
+           [defaultValue]="info" >
+    <!--<label class="image-upload-container btn btn-bwm form-control mb-4">
+      <span>Add a profile picture</span>
+      <input #imageInput
+             type="file"
+             name="picture"
+             accept="image/*"
+             class="add_image"
+             (change)="processFile(imageInput)">
+    </label>-->
+    <br/>
+    <button color="info" block="true" class="my-4" type="submit"> Submit</button>
+  </form>
+</div>

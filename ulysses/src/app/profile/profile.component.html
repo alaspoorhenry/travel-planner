@@ -1,0 +1,42 @@
+<!--
+<form>
+<label>Username</label>
+<input type="text" placeholder="Username" [defaultValue]="'a'" disabled="">
+<label>First name</label>
+<input type="text" placeholder="First name" [defaultValue]="'a'" disabled="">
+<label>Last name</label>
+<input type="text" placeholder="Last name" [defaultValue]="'a'" disabled="">
+<label>Full name</label>
+<input type="text" placeholder="Full name" [defaultValue]="'a'" disabled="">
+<label>Email Address</label>
+<input type="text" placeholder="Email Address">
+<label class="image-upload-container btn btn-bwm">
+Profile picture
+<img src="" alt="">
+</label>
+<button class="user-btn" [routerLink]="['/editprofile', id]"
+routerLinkActive="active">Edit profile</button>
+</form>
+
+-->
+<div class="profile-wrapper">
+  <div class="user-info" *ngIf="user">
+    <a class="username">{{ user.username }}</a>
+    <a class="fullname">{{ user.fullName }}</a>
+    <a class="info">{{ user.info }}</a>
+  </div>
+  <div class="itineraries-container">
+    <div class="itineraries-display">
+      <div *ngIf="user && loggedInUser && user._id === loggedInUser._id" class="itinerary-card add-itinerary" (click)="addNewItinerary()" title="Add new itinerary">
+        <img src="/assets/images/add.svg">
+      </div>
+      <div *ngFor="let itinerary of userItineraries;" (click)="viewItinerary(itinerary)" class="itinerary-card"
+      [style.background]="'url(' + itinerary.photoUrl + ')'">
+        <div class="itinerary-info" *ngIf="!!itinerary">
+          <div class="itinerary-name">{{ itinerary.name }}</div>
+          <div class="itinerary-user">{{ itinerary.username }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

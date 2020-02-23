@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="plan-wrapper container h-100 wrapper-top background_app">
+  <div class="plan-container d-flex flex-column h-100">
+    <div class="map-container border border-dark">
+      <div class="map-area">
+        <agm-map (mapReady)="mapReady($event)" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDoubleClickZoom] = "true" [streetViewControl] = "false">
+          <agm-marker *ngIf="!!tempMarker" [latitude]="tempMarker.latitude" [longitude]="tempMarker.longitude" [label]="tempMarker.label">
+          </agm-marker>
+          <agm-marker *ngFor="let marker of markersArray" [latitude]="marker.latitude" [longitude]="marker.longitude" [label]="marker.label">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+    <div class="push"></div>
+    <div class="header">
+      <input class="itinerary-name-display disable" *ngIf="!mode.plan" type="text" [(ngModel)]="itineraryName" placeholder="Enter your itinerary name"/>
+      <input class="itinerary-name-display" *ngIf="mode.plan" type="text" [(ngModel)]="itineraryName" placeholder="Enter your itinerary name"/>
+      <button class="saveItinerary" *ngIf="mode.plan" (click)="saveItinerary()">Save</button>
+      <button class="planItinerary" *ngIf="!mode.plan && serverItinerary && loggedInUser && serverItinerary.user === loggedInUser._id" (click)="enterPlanMode()">Plan</button>
+    </div>
+    <div class="push"></div>
+
+    <div class="plan-container mt-1">
+      <div class="row w-100">
+        <div class="col" *ngIf="mode.plan">
+          <div class="list-container">
+            <div class="search-container">
+              <input class="search-field" type="text" (keyup.enter)="searchNearbyPlaces(search)" [(ngModel)]="search" placeholder="Search"/>
+              <div class="search-button" (click)="searchNearbyPlaces(search)">
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+            <div class="search-content">
+              <div class="place-container" *ngFor="let place of nearbyPlacesResults">
+                <div class="place-card" (click)="addToItinerary(place)" (mouseover)="addTempMarker(place)" (mouseout)="removeTempMarker()">
+                  <div class="place-img crop" [ngStyle]="{background: '#444444 url(' + place.photoUrl + ') no-repeat scroll center'}">
+                  </div>
+                  <div class="place-info">
+                    <p class="place-name">{{ place.name }}</p>
+                  </div>
+                </div>
+                <div class="place-toolbar">
+                  <div class="add-place"></div>
+                  <div class="remove-place"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class = "col">
+          <div class="col-sm-8">
+            <div class="itinerary-area">
+              <h3>Itinerary details:</h3>
+              <div class="itinerary-details">
+                <div class="itinerary-place" *ngFor="let place of itineraryArray; index as i;">
+                  <div class="itinerary-header">{{ i + 1 }}. {{ place.name }} - {{ place.address }}</div>
+                  <div class="itinerary-info"></div>
+                  <div class="itinerary-controls" *ngIf="mode.plan">
+                    <button class="delete-btn" (click)="removeFromItinerary(i)">x</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

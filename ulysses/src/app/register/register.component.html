@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ulysses</title>
+  <base href="/register">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="register-wrapper">
+      <div class="box-header"> Register </div>
+      <form id="register-form" (submit)="registerUser($event)">
+        <input id="username" type="text" placeholder="Enter your name here" required/>
+        <input id="password" type="password" placeholder="Enter your password here" required/>
+        <button type="submit">Submit</button>
+      </form>
+      <a routerLink="/login"><button class="btn" > Login </button></a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+.topbar {
+  font-family: Verdana, Geneva, sans-serif;
+  background-color: #1E1E24;
+  padding: 0 4%;
+  overflow: hidden;
+  margin: 0px -8px 0 -8px;
+  display: grid;
+
+  .navigation {
+    display: flex;
+    .places {
+      display: flex;
+      .nav-btn {
+        color: #EAEAEA;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 14px;
+        &:hover {
+          color: grey;
+        }
+      }
+    }
+  }
+
+  .user-info {
+    display: flex;
+    margin-left: auto;
+
+    .user-avatar {
+      //https://stackoverflow.com/questions/26681059/create-a-circle-avatar-from-a-rectangle-image-keeping-proportions-and-just-using
+      width: 35px;
+      height: 35px;
+      background-size: cover;
+      background-position: top center;
+      border-radius: 50%;
+      margin-top: auto;
+      margin-bottom: auto;
+      border: 1px solid white;
+      cursor: pointer;
+    }
+
+    .user-options {
+      display: grid;
+      .user-btn {
+        text-align: left;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        padding: 5px 63px 5px 17px;
+        margin-left: -13px;
+        margin-right: -13px;
+        cursor: pointer;
+        &:hover {
+          background-color: #aaaaaa;
+        }
+      }
+    }
+
+    /deep/ .popover .arrow {
+      display: none;
+    }
+  }
+}
